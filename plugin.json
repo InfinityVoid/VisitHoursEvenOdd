@@ -1,0 +1,16 @@
+{
+  "name": "VisitHoursEvenOdd",
+  "version": "0.1.0",
+  "description": "Piwik Platform showcase: how to create widgets, menus, scheduled tasks, a custom archiver, plugin tests, and a AngularJS component.",
+  "theme": false,
+  "require": {
+    "piwik": ">=2.13.0-b3"
+  },
+  "authors": [
+    {
+      "name": "Piwik",
+      "email": "",
+      "homepage": ""
+    }
+  ]
+}
