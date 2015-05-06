@@ -73,7 +73,7 @@ class GetEvenOddReport extends Base
         // $view->requestConfig->filter_sort_column = 'nb_visits';
         // $view->requestConfig->filter_limit = 10';
 
-        $view->config->addTranslation('label', 'Visit Hours');
+        $view->config->addTranslation('label', Piwik::translate('VisitHoursEvenOdd_VisitHours'));
 
         $view->config->columns_to_display = array_merge(array('label'), array('nb_visits'));
     }

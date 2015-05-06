@@ -1,5 +1,9 @@
 {
     "VisitHoursEvenOdd": {
-        "EvenOddReport": "Even/Odd Hours Report"
+        "EvenOddReport": "Even/Odd Hours Report",
+        "EvenOption": "Even",
+        "OddOption": "Odd",
+        "UnknownError": "Unknown Label Error",
+        "VisitHours": "Visit Hours"
     }
 }

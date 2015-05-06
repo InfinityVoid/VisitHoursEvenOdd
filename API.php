@@ -1,13 +1,15 @@
 <?php
 /**
- * Piwik - free/libre analytics platform
+ * Copyright (C) Piwik PRO - All rights reserved.
  *
- * @link http://piwik.org
- * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
+ * Using this code requires that you first get a license from Piwik PRO.
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
  *
+ * @link http://piwik.pro
  */
 namespace Piwik\Plugins\VisitHoursEvenOdd;
 
+use Piwik\Archive;
 use Piwik\Piwik;
 use Piwik\DataTable;
 use Piwik\DataTable\Row;
@@ -21,8 +23,31 @@ use Piwik\API\Request;
 class API extends \Piwik\Plugin\API
 {
 
+    protected function getDataTable($name, $idSite, $period, $date, $segment)
+    {
+        Piwik::checkUserHasViewAccess($idSite);
+        $archive = Archive::build($idSite, $period, $date, $segment);
+        $dataTable = $archive->getDataTable($name);
+
+        $dataTable->filter('Sort', array('label', 'asc', true, false));
+        $dataTable->queueFilter('ColumnCallbackReplace', array('label', function ($label) {
+            switch($label)
+            {
+                case "0":
+                    return Piwik::translate('VisitHoursEvenOdd_EvenOption');
+                case "1":
+                    return Piwik::translate('VisitHoursEvenOdd_OddOption');
+                default:
+                    return Piwik::translate('VisitHoursEvenOdd_UnknownError');
+            }
+        }));
+        $dataTable->queueFilter('ReplaceColumnNames');
+        return $dataTable;
+    }
+
     /**
-     * Another example method that returns a data table.
+     * Method that requests DataTable for even and odd hours report.
+     *
      * @param int    $idSite
      * @param string $period
      * @param string $date
@@ -31,35 +56,8 @@ class API extends \Piwik\Plugin\API
      */
     public function getEvenOddReport($idSite, $period, $date, $segment = false)
     {
-        $data = \Piwik\API\Request::processRequest('VisitTime.getVisitInformationPerLocalTime', array(
-            'idSite' => $idSite,
-            'period' => $period,
-            'date' => $date,
-            'segment' => $segment
-        ));
-        $data->applyQueuedFilters();
-
-        $result = $data->getEmptyClone($keepFilters = false);
-
-        foreach ($data->getRows() as $visitRow) {
-            $hour = (int) substr($visitRow->getColumn('label'),0,-1);
-
-            if(is_int($hour)){
-                $type = ($hour % 2 === 0 ? "Even" : "Odd");
-                $resultRow = $result->getRowFromLabel($type);
-
-                if($resultRow === false){
-                    $result->addRowFromSimpleArray(array(
-                        'label'     => Piwik::translate($type),
-                        'nb_visits' => $visitRow->getColumn('nb_visits')
-                    ));
-                }else{
-                    $soFar = $resultRow->getColumn('nb_visits');
-                    $resultRow->setColumn('nb_visits', $soFar + $visitRow->getColumn('nb_visits'));
-                }
-            }
-        }
-
-        return $result;
+        $table = $this->getDataTable(Archiver::HOURS_EVEN_ODD_RECORD_NAME, $idSite, $period, $date, $segment);
+        $table->applyQueuedFilters();
+        return $table;
     }
 }
