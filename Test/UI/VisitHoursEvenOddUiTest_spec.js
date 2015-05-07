@@ -3,6 +3,7 @@ describe("VisitHoursEvenOddUiTest", function () {
 
     var urlToTest = '?module=CoreHome&action=index&idSite=1&period=day&date=2013-01-23#/module=VisitHoursEvenOdd&action=menuGetEvenOddReport&idSite=1&period=day&date=2013-01-23';
     this.fixture = "Piwik\\Plugins\\VisitHoursEvenOdd\\Test\\Fixtures\\SimpleFixtureTrackFewVisits";
+    var contentSelector = '.pageWrap';
 
     testEnvironment.debug = "1";
     testEnvironment.save();
@@ -11,7 +12,7 @@ describe("VisitHoursEvenOddUiTest", function () {
         var screenshotName = 'simplePage';
         // will save image in "processed-ui-screenshots/WidgetizePageTest_simplePage.png"
 
-        expect.screenshot(screenshotName).to.be.capture(function (page) {
+        expect.screenshot(screenshotName).to.be.captureSelector(contentSelector, function (page) {
             page.load(urlToTest);
         }, done);
     });
