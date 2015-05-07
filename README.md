@@ -2,18 +2,19 @@
 
 ## Description
 
-Add your plugin description here.
+This plugin is a showcase how to write a simple plugin.
 
 ## FAQ
 
-__My question?__
+__What is this plugin good for?__
 
-My answer
+I'm glad you've asked. It is good for people who wants to learn how to write first Piwik plugin.
 
 ## Changelog
 
-Here goes the changelog text.
+v 0.9.0 Plugin awaits review
+v 0.1.0 Development start
 
 ## Support
 
-Please direct any feedback to ...
+No. There is no support for this plugin. Sorry.
