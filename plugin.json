@@ -1,16 +1,24 @@
 {
   "name": "VisitHoursEvenOdd",
-  "version": "0.1.0",
-  "description": "Piwik Platform showcase: how to create widgets, menus, scheduled tasks, a custom archiver, plugin tests, and a AngularJS component.",
-  "theme": false,
+  "author": "Piwik PRO",
+  "author_homepage": "http:\/\/piwik.pro",
+  "version": "0.9.0",
+  "description": "Piwik Platform showcase: how to create widgets, menus, scheduled tasks, a custom archiver, plugin tests",
+  "keywords": [
+    "showcase"
+  ],
+  "license": "Paid plugin",
+  "license_homepage": "http:\/\/piwik.pro\/contact",
+  "homepage": "http:\/\/piwik.pro",
   "require": {
-    "piwik": ">=2.13.0-b3"
+    "piwik": ">=2.13.1",
+    "php": ">=5.3.0"
   },
   "authors": [
     {
-      "name": "Piwik",
-      "email": "",
-      "homepage": ""
+      "name": "Piwik PRO",
+      "email": "contact@piwik.pro",
+      "homepage": "http:\/\/piwik.pro"
     }
   ]
 }

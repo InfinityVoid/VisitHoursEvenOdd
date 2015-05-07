@@ -1,0 +1,18 @@
+{
+  "name": "piwikpro/VisitHoursEvenOdd",
+  "type": "piwik-plugin",
+  "description": "Example plugin showcase",
+  "minimum-stability": "stable",
+  "version": "0.9.0",
+  "license": "Paid plugin",
+  "license_homepage": "http://piwik.pro/contact",
+  "authors": [
+    {
+      "name": "PiwikPRO team",
+      "email": "contact@piwik.pro"
+    }
+  ],
+  "require": {
+    "piwik/piwik": ">=2.13.1"
+  }
+}
