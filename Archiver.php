@@ -10,6 +10,7 @@
 
 namespace Piwik\Plugins\VisitHoursEvenOdd;
 
+use Piwik\DataArray;
 
 class Archiver extends \Piwik\Plugin\Archiver
 {
@@ -36,7 +37,8 @@ class Archiver extends \Piwik\Plugin\Archiver
             $columnToSortByBeforeTruncation = null,
             $columnsAggregationOperation,
             $columnsToRenameAfterAggregation = null,
-            $countRowsRecursive = array());
+            $countRowsRecursive = array()
+        );
     }
 
     private function ensureBothHoursAreSet(DataArray &$array)

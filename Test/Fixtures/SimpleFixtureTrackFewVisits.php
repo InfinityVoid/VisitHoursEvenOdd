@@ -46,12 +46,12 @@ class SimpleFixtureTrackFewVisits extends Fixture
         $t = self::getTracker($this->idSite, $this->dateTime, $defaultInit = true);
 
         for ($i=0; $i<15; $i++) {
+            $t->setNewVisitorId();
             $t->setForceNewVisit();
-            echo Date::factory($this->dateTime)->addHour($i*1)->getDatetime()."\n";
             $t->setForceVisitDateTime(Date::factory($this->dateTime)->addHour($i*1)->getDatetime());
+            $t->setLocalTime(Date::factory($this->dateTime)->addHour($i*1)->toString('H:i:s'));
             $t->setUrl('http://example.com/');
             $response = $t->doTrackPageView('Viewing homepage');
-            var_dump($response);
             self::checkResponse($response);
         }
     }

@@ -33,7 +33,6 @@ class VisitHoursEvenOddApiTest extends IntegrationTestCase
     public function testApi($api, $params)
     {
         $this->runApiTests($api, $params);
-        die();
     }
 
     public function getApiForTesting()
